@@ -903,5 +903,32 @@
       window.location.href = plan.includes('79') ? proUrl : starterUrl;
     }
   </script>
+  <!-- Cookie Banner -->
+  <div id="cookieBanner" style="
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: #12121a; border-top: 1px solid #1e1e2e;
+    padding: 20px 40px; display: flex; align-items: center;
+    justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  ">
+    <p style="font-size:0.8rem; color:#9b9bb0; margin:0; max-width:600px; font-family:'DM Sans',sans-serif;">
+      Diese Website verwendet technisch notwendige Cookies. Weitere Infos in unserer 
+      <a href="https://www.deincoach.io/datenschutz/" style="color:#00e5a0;">Datenschutzerklärung</a>.
+    </p>
+    <button onclick="acceptCookies()" style="
+      background:#00e5a0; color:#000; border:none; padding:10px 24px;
+      font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.875rem;
+      border-radius:6px; cursor:pointer; white-space:nowrap;
+    ">Verstanden</button>
+  </div>
+
+  <script>
+    function acceptCookies() {
+      document.getElementById('cookieBanner').style.display = 'none';
+      localStorage.setItem('cookiesAccepted', 'true');
+    }
+    if (localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
