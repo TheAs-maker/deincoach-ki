@@ -883,7 +883,24 @@
 
     // Stripe placeholder
     function handleStripe() {
-      alert('Stripe Integration kommt hier rein!\nDein Stripe Payment Link oder Checkout.');
+      const plan = document.querySelector('select').value;
+      const priceId = plan.includes('79') 
+        ? 'price_1T7zr2ErGFEFh3LYaRYx4KQP'  // Pro
+        : 'price_1T7zqZErGFEFh3LYOa4Kc5Cn'; // Starter
+      
+      const name = document.querySelector('input[type="text"]').value;
+      const email = document.querySelector('input[type="email"]').value;
+
+      if (!name || !email) {
+        alert('Bitte Firmenname und E-Mail eintragen.');
+        return;
+      }
+
+      // Stripe Checkout URL
+      const starterUrl = 'https://buy.stripe.com/4gM8wPbYYcQOdXN7fmg7e00';
+      const proUrl = 'https://buy.stripe.com/9B614n2ooeYWaLB9nug7e01';
+      
+      window.location.href = plan.includes('79') ? proUrl : starterUrl;
     }
   </script>
 </body>
