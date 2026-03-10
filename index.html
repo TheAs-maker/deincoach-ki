@@ -417,10 +417,33 @@
     /* Pricing */
     .pricing-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 2px;
-      max-width: 800px;
+      max-width: 1100px;
     }
+
+    .plan-mwst {
+      font-size: 0.72rem;
+      color: #a0a0bc;
+      font-family: 'DM Mono', monospace;
+      margin-top: -4px;
+      margin-bottom: 20px;
+      white-space: nowrap;
+    }
+
+    .plan-extra-note {
+      font-size: 0.75rem;
+      color: #a0a0bc;
+      font-family: 'DM Mono', monospace;
+      margin-top: -20px;
+      margin-bottom: 28px;
+      padding: 8px 12px;
+      background: rgba(0,229,160,0.05);
+      border: 1px solid rgba(0,229,160,0.15);
+      border-radius: 4px;
+    }
+
+    .plan-extra-note span { color: var(--accent); }
 
     .plan {
       background: var(--card);
@@ -778,12 +801,16 @@
     <p class="section-sub">Monatlich kündbar. Keine Einrichtungsgebühr. Keine versteckten Kosten.</p>
 
     <div class="pricing-grid fade-up">
+
+      <!-- Starter -->
       <div class="plan">
         <div class="plan-name">Starter</div>
-        <div class="plan-price">49<span>€</span></div>
+        <div class="plan-price">39<span>€</span></div>
         <div class="plan-period">/ Monat · pro Mandant</div>
+        <div class="plan-mwst">zzgl. 19% MwSt. · 46,41 € brutto</div>
+        <div class="plan-extra-note">bis zu <span>200 Belege</span> · danach <span>0,15 €</span> pro Beleg</div>
         <ul class="plan-features">
-          <li>Bis zu 200 Belege/Monat</li>
+          <li>200 Belege/Monat inklusive</li>
           <li>Automatische Kategorisierung</li>
           <li>§13b Erkennung</li>
           <li>E-Mail Support</li>
@@ -791,11 +818,15 @@
         </ul>
         <a href="#start" class="btn btn-outline" style="width:100%; justify-content:center;">Starten</a>
       </div>
+
+      <!-- Pro -->
       <div class="plan featured">
         <div class="plan-badge">EMPFOHLEN</div>
         <div class="plan-name">Pro</div>
         <div class="plan-price">79<span>€</span></div>
         <div class="plan-period">/ Monat · pro Mandant</div>
+        <div class="plan-mwst">zzgl. 19% MwSt. · 94,01 € brutto</div>
+        <div class="plan-extra-note"><span>Unlimited</span> Belege · keine Zusatzkosten</div>
         <ul class="plan-features">
           <li>Unbegrenzte Belege</li>
           <li>Automatische Kategorisierung</li>
@@ -806,6 +837,26 @@
         </ul>
         <a href="#start" class="btn btn-primary" style="width:100%; justify-content:center;">Jetzt starten</a>
       </div>
+
+      <!-- Workflow -->
+      <div class="plan">
+        <div class="plan-name">Workflow</div>
+        <div class="plan-price">99<span>€</span></div>
+        <div class="plan-period">/ Monat · pro Mandant</div>
+        <div class="plan-mwst">zzgl. 19% MwSt. · 117,81 € brutto</div>
+        <div class="plan-extra-note"><span>Unlimited</span> Belege · inkl. Fremdwährungen</div>
+        <ul class="plan-features">
+          <li>Unbegrenzte Belege</li>
+          <li>Automatische Kategorisierung</li>
+          <li>§13b Erkennung</li>
+          <li>Kreditor automatisch anlegen</li>
+          <li>Fremdwährungsumrechnung</li>
+          <li>Mehrere Währungen gleichzeitig</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="#start" class="btn btn-outline" style="width:100%; justify-content:center;">Starten</a>
+      </div>
+
     </div>
   </section>
 
@@ -830,8 +881,9 @@
       <div class="form-group">
         <label>Plan wählen</label>
         <select>
-          <option>Starter · 49€/Monat</option>
+          <option>Starter · 39€/Monat</option>
           <option selected>Pro · 79€/Monat</option>
+          <option>Workflow · 99€/Monat</option>
         </select>
       </div>
       <button class="btn btn-primary" style="width:100%; justify-content:center; padding:16px; font-size:1rem;" onclick="handleStripe()">
@@ -881,13 +933,8 @@
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Stripe placeholder
     function handleStripe() {
       const plan = document.querySelector('select').value;
-      const priceId = plan.includes('79') 
-        ? 'price_1T7zr2ErGFEFh3LYaRYx4KQP'  // Pro
-        : 'price_1T7zqZErGFEFh3LYOa4Kc5Cn'; // Starter
-      
       const name = document.querySelector('input[type="text"]').value;
       const email = document.querySelector('input[type="email"]').value;
 
@@ -896,11 +943,17 @@
         return;
       }
 
-      // Stripe Checkout URL
       const starterUrl = 'https://buy.stripe.com/4gM8wPbYYcQOdXN7fmg7e00';
-      const proUrl = 'https://buy.stripe.com/9B614n2ooeYWaLB9nug7e01';
-      
-      window.location.href = plan.includes('79') ? proUrl : starterUrl;
+      const proUrl    = 'https://buy.stripe.com/9B614n2ooeYWaLB9nug7e01';
+      const workflowUrl = 'https://buy.stripe.com/9B6bJ11kkaIGf1R6big7e04';
+
+      if (plan.includes('99')) {
+        window.location.href = workflowUrl;
+      } else if (plan.includes('79')) {
+        window.location.href = proUrl;
+      } else {
+        window.location.href = starterUrl;
+      }
     }
   </script>
   <!-- Cookie Banner -->
