@@ -3,7 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>deinCoach.io · KI-Buchhaltung · Lexware Office automatisch verbuchen</title>
+  <title>Lexware Office automatisch verbuchen · KI-Buchhaltung · deinCoach.io</title>
+  <meta name="description" content="Lexware Office automatisch verbuchen mit KI. Belege werden automatisch erkannt, kategorisiert und gebucht – ohne manuellen Aufwand. Ab 49 € netto/Monat.">
+  <meta name="keywords" content="Lexware Office automatisch verbuchen, KI Buchhaltung, Belege automatisch buchen, Lexware Office Automatisierung, KI Buchführung, automatische Belegverarbeitung">
+  <meta name="author" content="Alexander Mayer · deinCoach.io">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ki.deincoach.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ki.deincoach.io/">
+  <meta property="og:title" content="Lexware Office automatisch verbuchen · KI-Buchhaltung">
+  <meta property="og:description" content="Belege automatisch erkennen, kategorisieren und buchen – mit KI. Für Lexware Office. Ab 49 € netto/Monat.">
+  <meta property="og:image" content="https://ki.deincoach.io/og-image.png">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="deinCoach.io">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lexware Office automatisch verbuchen · KI-Buchhaltung">
+  <meta name="twitter:description" content="Belege automatisch erkennen, kategorisieren und buchen – mit KI. Für Lexware Office.">
+  <meta name="twitter:image" content="https://ki.deincoach.io/og-image.png">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "deinCoach.io KI-Buchhaltung",
+    "description": "KI-gestützte automatische Belegverarbeitung und Buchführung für Lexware Office",
+    "url": "https://ki.deincoach.io",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "price": "49.00",
+        "priceCurrency": "EUR",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "79.00",
+        "priceCurrency": "EUR",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
+      },
+      {
+        "@type": "Offer",
+        "name": "Workflow",
+        "price": "99.00",
+        "priceCurrency": "EUR",
+        "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" }
+      }
+    ],
+    "provider": {
+      "@type": "Person",
+      "name": "Alexander Mayer",
+      "url": "https://www.deincoach.io"
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -630,7 +692,87 @@
       .onboarding { padding: 32px 24px; }
       footer { padding: 24px; flex-direction: column; gap: 12px; }
       h1 { font-size: 2.5rem; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .faq-item { padding: 20px 0; }
     }
+
+    /* Trust Badges */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: 1100px;
+    }
+
+    .trust-badge {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 32px 28px;
+      transition: border-color 0.3s;
+    }
+
+    .trust-badge:hover { border-color: var(--accent); }
+
+    .trust-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .trust-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .trust-text {
+      font-size: 0.85rem;
+      color: #a0a0bc;
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 860px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      cursor: pointer;
+    }
+
+    .faq-q {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-arrow {
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: #a0a0bc;
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
     /* ROI Kalkulator */
     .calc-wrapper {
       background: var(--card);
@@ -752,6 +894,7 @@
       <a href="#wie">Wie es funktioniert</a>
       <a href="#features">Features</a>
       <a href="#preise">Preise</a>
+      <a href="/blog.html">Blog</a>
       <a href="#start" class="btn btn-primary">Jetzt starten</a>
     </div>
   </nav>
@@ -1058,11 +1201,102 @@
     </div>
   </section>
 
+  <hr class="divider">
+
+  <!-- Trust Badges -->
+  <section id="trust">
+    <div class="section-label">// vertrauen & sicherheit</div>
+    <h2>Sicher.<br>Transparent. Deutsch.</h2>
+    <p class="section-sub">deinCoach.io wurde entwickelt für den deutschen Markt – mit allen Anforderungen die das bedeutet.</p>
+    <div class="trust-grid fade-up">
+      <div class="trust-badge">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-title">SSL verschlüsselt</div>
+        <div class="trust-text">Alle Daten werden verschlüsselt übertragen. Kein Zugriff durch Dritte.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon">🇩🇪</div>
+        <div class="trust-title">Hosted in Germany</div>
+        <div class="trust-text">Server bei Hetzner in Deutschland. DSGVO-konform.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon">🛡️</div>
+        <div class="trust-title">DSGVO konform</div>
+        <div class="trust-text">Deine Daten gehören dir. Keine Weitergabe an Dritte.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon">💳</div>
+        <div class="trust-title">Zahlung via Stripe</div>
+        <div class="trust-text">Sichere Zahlungsabwicklung über den Weltmarktführer Stripe.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon">📅</div>
+        <div class="trust-title">Monatlich kündbar</div>
+        <div class="trust-text">Keine Mindestlaufzeit. Jederzeit zum Monatsende kündbar.</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-icon">🤖</div>
+        <div class="trust-title">Powered by Claude AI</div>
+        <div class="trust-text">Anthropic's Claude – eines der genauesten KI-Modelle weltweit.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-label">// häufige fragen</div>
+    <h2>Deine Fragen.<br>Ehrliche Antworten.</h2>
+    <p class="section-sub">Alles was du wissen musst bevor du startest.</p>
+
+    <div class="faq-list fade-up">
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Muss ich Lexware Office XL haben? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Ja, für die API-Anbindung ist das Lexware Office XL Paket Voraussetzung. Nur XL bietet Zugang zur Lexware API, über die die automatische Buchung funktioniert.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Was passiert wenn die KI einen Beleg falsch kategorisiert? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Bei Unsicherheit bekommst du automatisch eine E-Mail zur Prüfung. Du kannst die Buchung dann direkt in Lexware Office korrigieren. Die KI lernt täglich aus deinen Korrekturen und wird präziser.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Brauche ich technisches Wissen? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Nein. Die Einrichtung dauert ca. 5 Minuten – du trägst deinen Lexware Office API Key ein, der Rest läuft automatisch. Kein Code, keine Installation, keine IT-Kenntnisse nötig.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Welche Belege werden verarbeitet? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Alle Eingangsrechnungen die du in Lexware Office hochlädst – PDFs, digitale Rechnungen, auch Fremdwährungen (im Workflow-Plan). §13b / Reverse Charge wird automatisch erkannt.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Sind meine Daten sicher? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Ja. Dein API Key wird verschlüsselt gespeichert. Rechnungsinhalte werden vor der KI-Analyse anonymisiert. Der Server läuft bei Hetzner in Deutschland, DSGVO-konform.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Kann ich das Abo jederzeit kündigen? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Ja, monatlich kündbar zum Ende des laufenden Abrechnungszeitraums. Die Kündigung läuft direkt über das Stripe Kundenportal – kein Kontakt nötig.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Ersetzt das meinen Steuerberater? <span class="faq-arrow">↓</span></div>
+        <div class="faq-a">Nein – und das wollen wir auch nicht. Die KI übernimmt die manuelle Erfassungsarbeit, aber die steuerliche Verantwortung bleibt bei dir und deinem Steuerberater. Perfekt als Ergänzung.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
   <!-- Footer -->
   <footer>
     <div class="logo">deinCoach<span>.io</span></div>
     <p>© 2026 deinCoach.io · Alexander Mayer · Aschheim</p>
-    <p><a href="https://www.deincoach.io/datenschutz/" style="color:var(--muted);text-decoration:none;">Datenschutz</a> · <a href="https://www.deincoach.io/impressum/" style="color:var(--muted);text-decoration:none;">Impressum</a> · <a href="/agb.html" style="color:var(--muted);text-decoration:none;">AGB</a> · <a href="https://billing.stripe.com/p/login/3cscPa6DycjU44o6oo" style="color:var(--muted);text-decoration:none;">Abo verwalten</a></p>
+    <p><a href="https://www.deincoach.io/datenschutz/" style="color:var(--muted);text-decoration:none;">Datenschutz</a> · <a href="https://www.deincoach.io/impressum/" style="color:var(--muted);text-decoration:none;">Impressum</a> · <a href="/agb.html" style="color:var(--muted);text-decoration:none;">AGB</a> · <a href="/blog.html" style="color:var(--muted);text-decoration:none;">Blog</a> · <a href="https://billing.stripe.com/p/login/3cscPa6DycjU44o6oo" style="color:var(--muted);text-decoration:none;">Abo verwalten</a></p>
   </footer>
 
   <script>
@@ -1116,6 +1350,10 @@
       } else {
         window.location.href = starterUrl;
       }
+    }
+
+    function toggleFaq(el) {
+      el.classList.toggle('open');
     }
 
     function calcROI() {
