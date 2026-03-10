@@ -631,6 +631,111 @@
       footer { padding: 24px; flex-direction: column; gap: 12px; }
       h1 { font-size: 2.5rem; }
     }
+    /* ROI Kalkulator */
+    .calc-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 48px;
+      max-width: 860px;
+    }
+
+    .calc-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .calc-group { display: flex; flex-direction: column; gap: 12px; }
+
+    .calc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: #a0a0bc;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .calc-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .calc-slider-row input[type=range] {
+      flex: 1;
+      -webkit-appearance: none;
+      background: var(--border);
+      height: 3px;
+      border-radius: 2px;
+      outline: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .calc-slider-row input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .calc-val {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent);
+      min-width: 70px;
+      text-align: right;
+    }
+
+    .calc-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 32px;
+    }
+
+    .calc-result-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .calc-result-item.highlight {
+      border-color: var(--accent);
+      background: rgba(0,229,160,0.03);
+    }
+
+    .calc-result-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .calc-result-item.highlight .calc-result-num { color: var(--accent); }
+
+    .calc-result-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: #a0a0bc;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .calc-cta { text-align: center; }
+
+    @media (max-width: 900px) {
+      .calc-wrapper { padding: 24px; }
+      .calc-results { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -794,7 +899,63 @@
 
   <hr class="divider">
 
-  <!-- Pricing -->
+  <!-- ROI Kalkulator -->
+  <section id="kalkulator">
+    <div class="section-label">// roi-kalkulator</div>
+    <h2>Was sparst du<br>wirklich ein?</h2>
+    <p class="section-sub">Berechne deinen persönlichen Zeitgewinn und Kostenvorteil.</p>
+
+    <div class="calc-wrapper fade-up">
+      <div class="calc-inputs">
+
+        <div class="calc-group">
+          <label class="calc-label">Belege pro Monat</label>
+          <div class="calc-slider-row">
+            <input type="range" min="10" max="500" value="100" step="10" id="sliderBelege" oninput="calcROI()">
+            <span class="calc-val" id="valBelege">100</span>
+          </div>
+        </div>
+
+        <div class="calc-group">
+          <label class="calc-label">Minuten pro Beleg (manuell)</label>
+          <div class="calc-slider-row">
+            <input type="range" min="1" max="15" value="5" step="1" id="sliderMin" oninput="calcROI()">
+            <span class="calc-val" id="valMin">5 min</span>
+          </div>
+        </div>
+
+        <div class="calc-group">
+          <label class="calc-label">Dein Stundensatz (€)</label>
+          <div class="calc-slider-row">
+            <input type="range" min="20" max="200" value="60" step="5" id="sliderRate" oninput="calcROI()">
+            <span class="calc-val" id="valRate">60 €</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-item">
+          <div class="calc-result-num" id="resSaved">—</div>
+          <div class="calc-result-label">Stunden gespart / Monat</div>
+        </div>
+        <div class="calc-result-item highlight">
+          <div class="calc-result-num" id="resCost">—</div>
+          <div class="calc-result-label">Wert deiner gesparten Zeit</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-num" id="resROI">—</div>
+          <div class="calc-result-label">ROI (Zeitwert vs. Abo)</div>
+        </div>
+      </div>
+
+      <div class="calc-cta" id="calcCta">
+        <p id="calcMsg" style="color:#a0a0bc; font-size:0.9rem; font-family:'DM Mono',monospace;"></p>
+        <a href="#start" class="btn btn-primary" style="margin-top:16px;">Jetzt starten</a>
+      </div>
+
+    </div>
+  </section>
   <section id="preise">
     <div class="section-label">// preise</div>
     <h2>Einfache Preise.<br>Kein Kleingedrucktes.</h2>
@@ -956,6 +1117,41 @@
         window.location.href = starterUrl;
       }
     }
+
+    function calcROI() {
+      const belege = parseInt(document.getElementById('sliderBelege').value);
+      const min = parseInt(document.getElementById('sliderMin').value);
+      const rate = parseInt(document.getElementById('sliderRate').value);
+
+      document.getElementById('valBelege').textContent = belege;
+      document.getElementById('valMin').textContent = min + ' min';
+      document.getElementById('valRate').textContent = rate + ' €';
+
+      const stundenGespart = (belege * min / 60).toFixed(1);
+      const zeitwert = Math.round(stundenGespart * rate);
+
+      let plan, planPreis;
+      if (belege <= 200) { plan = 'Starter'; planPreis = 49; }
+      else { plan = 'Pro'; planPreis = 79; }
+
+      const roi = Math.round((zeitwert / planPreis) * 10) / 10;
+
+      document.getElementById('resSaved').textContent = stundenGespart + ' h';
+      document.getElementById('resCost').textContent = zeitwert + ' €';
+      document.getElementById('resROI').textContent = 'x' + roi;
+
+      const ersparnis = zeitwert - planPreis;
+      let msg = '';
+      if (ersparnis < 0) {
+        msg = '→ Tipp: Ab ca. ' + Math.ceil(planPreis / (rate * min / 60)) + ' Belegen/Monat amortisiert sich der ' + plan + '-Plan vollständig.';
+      } else {
+        msg = '→ Empfohlen: ' + plan + ' · ' + planPreis + ' € netto/Monat · Du sparst ' + ersparnis + ' € Gegenwert pro Monat';
+      }
+      document.getElementById('calcMsg').textContent = msg;
+    }
+
+    calcROI();
+
   </script>
   <!-- Cookie Banner -->
   <div id="cookieBanner" style="
