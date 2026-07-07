@@ -687,9 +687,12 @@
       border-radius: 50%;
     }
 
+    .nav-login-mobile { display: none; }
+
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
+      .nav-login-mobile { display: inline-flex; margin-left: auto; }
       .hero { padding: 100px 24px 60px; flex-direction: column; }
       .hero-visual { position: relative; right: auto; top: auto; transform: none; width: 100%; margin-top: 48px; }
       section { padding: 60px 24px; }
@@ -904,7 +907,9 @@
       <a href="/blog.html">Blog</a>
       <a href="https://tidycal.com/deincoach/ki-buchungsassistenten" target="_blank" rel="noopener" class="btn btn-outline">📅 Demo buchen</a>
       <a href="#start" class="btn btn-primary">Jetzt starten</a>
+      <a href="https://app.ki.deincoach.io" target="_self" class="btn btn-outline">Kundenlogin →</a>
     </div>
+    <a href="https://app.ki.deincoach.io" target="_self" class="btn btn-outline nav-login-mobile">Kundenlogin →</a>
   </nav>
 
   <!-- Hero -->
